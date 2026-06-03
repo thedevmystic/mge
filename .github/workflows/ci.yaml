@@ -1,0 +1,22 @@
+# CI/CD Workflow
+
+name: "CI/CD"
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  test-pre-commit-action:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v6
+
+      - name: CI/CD
+        uses: thedevmystic/github-actions/cpp-compatibility-check@main

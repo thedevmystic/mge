@@ -1,0 +1,8 @@
+---
+# --- Google Style Guide ---
+Language: Cpp
+BasedOnStyle: Google
+
+# --- Overrides ---
+ColumnLimit: 100
+...
