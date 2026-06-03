@@ -5,4 +5,5 @@ BasedOnStyle: Google
 
 # --- Overrides ---
 ColumnLimit: 100
+IndentPPDirectives: AfterHash
 ...
