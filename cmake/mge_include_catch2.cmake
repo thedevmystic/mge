@@ -1,6 +1,6 @@
 # CMake file to include Catch2 Library
 
-macro(include_catch2)
+function(include_catch2)
   find_package(Catch2 3 QUIET)
 
   if(NOT Catch2_FOUND)
@@ -16,4 +16,4 @@ macro(include_catch2)
   else()
     message(STATUS "Found local Catch2 installation: ${Catch2_VERSION}")
   endif()
-endmacro()
+endfunction()

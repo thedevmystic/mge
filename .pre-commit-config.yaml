@@ -18,7 +18,7 @@ repos:
         exclude_types: [svg]
       - id: mixed-line-ending
       - id: trailing-whitespace
-        exclude_types: [md]
+        exclude_types: [markdown]
       - id: fix-byte-order-marker
 
   # Python Hooks
@@ -45,13 +45,6 @@ repos:
       - id: clang-format
         args: ["-fallback-style=none", "-i"]
 
-  # CMake Hooks
-  - repo: https://github.com/cheshirekow/cmake-format-precommit
-    rev: v0.6.13
-    hooks:
-      - id: cmake-format
-      - id: cmake-lint
-
   # CI/CD Hooks
   - repo: https://github.com/python-jsonschema/check-jsonschema
     rev: 0.36.0
@@ -62,6 +55,8 @@ repos:
         args: ["--verbose"]
       - id: check-dependabot
         args: ["--verbose"]
+      - id: check-mergify
+        args: ["--verbose"]
 
   # Spellchecker Hooks
   - repo: https://github.com/codespell-project/codespell
@@ -69,4 +64,3 @@ repos:
     hooks:
       - id: codespell
         args: ["--write-changes"]
-

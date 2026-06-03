@@ -16,5 +16,3 @@ updates:
     commit-message:
       prefix: "fix(deps)"
       include: "scope"
-    reviewers:
-      - "thedevmystic"

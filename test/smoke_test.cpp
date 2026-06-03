@@ -8,4 +8,4 @@ TEST_CASE("Smoke Test", "[smoke][test]") {
   REQUIRE(1 + 1 == 2);
 }
 
-} // mge::smoke::test
+}  // namespace mge::smoke::test
