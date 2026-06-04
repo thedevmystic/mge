@@ -28,6 +28,9 @@
 # -------------------------------------------------------------------------------------------------
 cmake_minimum_required(VERSION 3.20)
 
+# Load CMake Options
+include(cmake/mge_cmake_options.cmake)
+
 # Show Greeting Banner
 include(cmake/mge_ascii_banner.cmake)
 mge_ascii_banner()
@@ -46,9 +49,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 # -------------------------------------------------------------------------------------------------
 # Targets
 # -------------------------------------------------------------------------------------------------
-add_executable(MGE
-	engine/core/main.cpp
-)
+# ...
 
 # -------------------------------------------------------------------------------------------------
 # Testing
@@ -56,8 +57,10 @@ add_executable(MGE
 include(cmake/mge_include_catch2.cmake)
 include_catch2()
 enable_testing()
-add_executable(Tests test/smoke_test.cpp)
-target_link_libraries(Tests
-	PRIVATE Catch2::Catch2WithMain
-)
-add_test(NAME Tests COMMAND Tests)
+
+# -------------------------------------------------------------------------------------------------
+# Subdirectories
+# -------------------------------------------------------------------------------------------------
+add_subdirectory(engine)
+# add_subdirectory(apps/editor)
+# add_subdirectory(apps/launcher)

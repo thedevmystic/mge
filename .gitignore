@@ -37,3 +37,10 @@
 .idea/
 *.user
 *.suo
+
+# Third Party
+!third_party/
+third_party/*
+!third_party/*/
+third_party/*/*
+!third_party/**/setup.py

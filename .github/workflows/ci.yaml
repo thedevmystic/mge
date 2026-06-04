@@ -12,11 +12,19 @@ on:
   workflow_dispatch:
 
 jobs:
-  test-pre-commit-action:
+  ci:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v6
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Install Third-Party Dependencies
+        run: python setup.py
 
       - name: CI/CD
         uses: thedevmystic/github-actions/cpp-compatibility-check@main
