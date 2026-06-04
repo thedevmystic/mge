@@ -29,7 +29,7 @@ target_include_directories(MGE_Core
 # -------------------------------------------------------------------------------------------------
 # Core Unit Tests
 # -------------------------------------------------------------------------------------------------
-add_executable(MGE_Core_Tests 
+add_executable(MGE_Core_Tests
   # -----------------------------------------------------------------------------------------------
 	# Common
   # -----------------------------------------------------------------------------------------------
@@ -37,7 +37,7 @@ add_executable(MGE_Core_Tests
 )
 
 target_link_libraries(MGE_Core_Tests
-  PRIVATE 
+  PRIVATE
     MGE::Core
     Catch2::Catch2WithMain
 )

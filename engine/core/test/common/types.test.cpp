@@ -23,12 +23,12 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+#include "common/types.hpp"
+
 #include <catch2/catch_test_macros.hpp>
 #include <cstddef>
 #include <cstdint>
 #include <type_traits>
-
-#include "common/types.hpp"
 
 TEST_CASE("mge::types - Fixed-width Integer Size and Signedness Verification",
           "[core][types][integers]") {

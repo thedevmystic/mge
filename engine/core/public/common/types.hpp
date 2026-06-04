@@ -16,7 +16,7 @@
  * ------------------------------------------------------------------------------------------------
  *
  * @file platform_types.hpp
- * @brief Defines unified types accross using HAL.
+ * @brief Defines unified types across using HAL.
  * @author thedevmystic (Surya) <thedevmystic@gmail.com>
  *
  * SPDX-FileCopyrightText: 2026-present Suryansh Singh

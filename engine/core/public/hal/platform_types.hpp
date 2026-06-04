@@ -16,7 +16,7 @@
  * ------------------------------------------------------------------------------------------------
  *
  * @file platform_types.hpp
- * @brief Defines unified types accross platforms.
+ * @brief Defines unified types across platforms.
  * @author thedevmystic (Surya) <thedevmystic@gmail.com>
  *
  * @note Only targets 64-bit architecture.
