@@ -1,7 +1,7 @@
 # CMake file to include Catch2 Library
 
 function(include_catch2)
-  # if set to use system installed version
+  # If set to use system installed version
   if(MGE_USE_SYSTEM_CATCH2)
     message(STATUS "MGE: Searching for system-installed Catch2 v3...")
     find_package(Catch2 3 REQUIRED)
@@ -15,10 +15,14 @@ function(include_catch2)
     set(PLATFORM_OS "linux")
     set(LIB_PREFIX "lib")
     set(LIB_SUFFIX ".a")
+    set(CATCH2_NAME "Catch2")
+    set(CATCH2_MAIN_NAME "Catch2Main")
   elseif(CMAKE_SYSTEM_NAME STREQUAL "Windows")
     set(PLATFORM_OS "windows")
     set(LIB_PREFIX "")
     set(LIB_SUFFIX ".lib")
+    set(CATCH2_NAME "Catch2")
+    set(CATCH2_MAIN_NAME "Catch2Main")
   else()
     message(FATAL_ERROR "Unsupported OS for pre-compiled Catch2: ${CMAKE_SYSTEM_NAME}")
   endif()
@@ -37,8 +41,8 @@ function(include_catch2)
   set(CATCH2_INC_DIR  "${CATCH2_BASE_DIR}/include")
   set(CATCH2_BIN_DIR  "${CATCH2_BASE_DIR}/bin/${PLATFORM_OS}/${PLATFORM_ARCH}")
 
-  set(CATCH2_LIB_PATH      "${CATCH2_BIN_DIR}/${LIB_PREFIX}Catch2${LIB_SUFFIX}")
-  set(CATCH2_MAIN_LIB_PATH "${CATCH2_BIN_DIR}/${LIB_PREFIX}Catch2Main${LIB_SUFFIX}")
+  set(CATCH2_LIB_PATH      "${CATCH2_BIN_DIR}/${LIB_PREFIX}${CATCH2_NAME}${LIB_SUFFIX}")
+  set(CATCH2_MAIN_LIB_PATH "${CATCH2_BIN_DIR}/${LIB_PREFIX}${CATCH2_MAIN_NAME}${LIB_SUFFIX}")
 
   # Targets
   if(NOT TARGET Catch2::Catch2)
@@ -53,7 +57,9 @@ function(include_catch2)
     add_library(Catch2::Catch2WithMain STATIC IMPORTED GLOBAL)
     set_target_properties(Catch2::Catch2WithMain PROPERTIES
       IMPORTED_LOCATION "${CATCH2_MAIN_LIB_PATH}"
-      INTERFACE_LINK_LIBRARIES "Catch2::Catch2"
+    )
+    set_property(TARGET Catch2::Catch2WithMain PROPERTY 
+      IMPORTED_LINK_INTERFACE_LIBRARIES Catch2::Catch2
     )
   endif()
 
