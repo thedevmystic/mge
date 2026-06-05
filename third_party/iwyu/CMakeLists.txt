@@ -32,4 +32,5 @@ list(GET IWYU_CXX_COMPILER_VERSION 0 IWYU_CXX_COMPILER_MAJOR_VERSION)
 set(IWYU_VERSION "clang_${IWYU_CXX_COMPILER_MAJOR_VERSION}")
 
 include(mge_third_party_config)
-mge_third_party_config("iwyu" "${IWYU_VERSION}" "https://github.com/include-what-you-use/include-what-you-use.git")
+# Since we can't use IWYU_VERSION in find_package, just find for any iwyu binary (it is dev's responsibility).
+mge_third_party_config("iwyu" "${IWYU_VERSION}" "https://github.com/include-what-you-use/include-what-you-use.git" OFF)
