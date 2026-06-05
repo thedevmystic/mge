@@ -40,7 +40,7 @@ jobs:
 
       - name: Generate Coverage Report
         run: |
-          gcovr --sonarqube coverage.xml -r . --filter engine/ --exclude build/
+          gcovr --sonarqube coverage.xml -r . --filter engine/ --search-paths build/engine
 
       - name: SonarQube Scan
         uses: SonarSource/sonarqube-scan-action@v8
