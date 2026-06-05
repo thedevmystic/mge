@@ -1,10 +1,12 @@
 # -------------------------------------------------------------------------------------------------
 # MGE Core Target
 # -------------------------------------------------------------------------------------------------
-add_library(MGE_Core INTERFACE)
-add_library(MGE::Core ALIAS MGE_Core)
-
-target_sources(MGE_Core INTERFACE
+add_library(MGE_Core STATIC
+  # -----------------------------------------------------------------------------------------------
+  # Dummy
+  # -----------------------------------------------------------------------------------------------
+  ${CMAKE_CURRENT_SOURCE_DIR}/public/header.hpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/private/header.cpp
   # -----------------------------------------------------------------------------------------------
 	# Common
   # -----------------------------------------------------------------------------------------------
@@ -17,13 +19,17 @@ target_sources(MGE_Core INTERFACE
   ${CMAKE_CURRENT_SOURCE_DIR}/public/hal/platform.hpp
   ${CMAKE_CURRENT_SOURCE_DIR}/public/hal/platform_types.hpp
 )
+add_library(MGE::Core ALIAS MGE_Core)
 
 # -------------------------------------------------------------------------------------------------
 # Include Directories (Public boundaries)
 # -------------------------------------------------------------------------------------------------
 target_include_directories(MGE_Core
-  INTERFACE
+  PUBLIC
 	  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/public>
+    $<INSTALL_INTERFACE:include>
+  PRIVATE
+    ${CMAKE_CURRENT_SOURCE_DIR}/private
 )
 
 if(MGE_ENABLE_TESTING)
@@ -31,6 +37,10 @@ if(MGE_ENABLE_TESTING)
   # Core Unit Tests
   # -----------------------------------------------------------------------------------------------
   add_executable(MGE_Core_Tests
+    # ---------------------------------------------------------------------------------------------
+    # Dummy
+    # ---------------------------------------------------------------------------------------------
+    test/header.test.cpp
     # ---------------------------------------------------------------------------------------------
     # Common
     # ---------------------------------------------------------------------------------------------
