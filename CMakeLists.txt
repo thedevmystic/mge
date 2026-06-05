@@ -34,8 +34,10 @@ cmake_minimum_required(VERSION 3.30)
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 include(mge_options)
 
-# Show Greeting Banner
-include(cmake/mge_ascii_banner.cmake)
+# -------------------------------------------------------------------------------------------------
+# Prologue Section
+# -------------------------------------------------------------------------------------------------
+include(mge_ascii_banner)
 mge_ascii_banner()
 
 # -------------------------------------------------------------------------------------------------
