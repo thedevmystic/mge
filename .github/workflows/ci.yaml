@@ -12,10 +12,25 @@ on:
 
 jobs:
   ci:
-    runs-on: ubuntu-latest
+    name: "CI (${{ matrix.os }} - ${{ matrix.compiler }})"
+    runs-on: ${{ matrix.os-runner }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: "linux"
+            os-runner: "ubuntu-latest"
+            compiler: "g++"
+          - os: "windows"
+            os-runner: "windows-latest"
+            compiler: "cl"
+
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v6
 
       - name: CI/CD
         uses: thedevmystic/github-actions/cpp-compatibility-check@main
+        with:
+          os: ${{ matrix.os }}
+          compiler: ${{ matrix.compiler }}
