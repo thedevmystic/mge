@@ -2,7 +2,7 @@
 
 function(mge_include_third_party ROOT_DIR)
     set(LICENSE_OUTPUT_DIR "${CMAKE_BINARY_DIR}/licenses")
-    
+
     message(STATUS "[MGE] - Scanning for third-party libraries in: ${ROOT_DIR}...")
 
     # Find all CMakeLists.txt files recursively in third_party
@@ -11,7 +11,7 @@ function(mge_include_third_party ROOT_DIR)
     foreach(CMAKE_FILE IN LISTS CMAK_FILES)
         # Get the relative directory path (e.g., "libfoo" out of "libfoo/CMakeLists.txt")
         get_filename_component(SUB_DIR "${CMAKE_FILE}" DIRECTORY)
-        
+
         # Skip the root directory itself if it accidentally matches
         if(SUB_DIR STREQUAL "")
             continue()
@@ -30,7 +30,7 @@ function(mge_include_third_party ROOT_DIR)
 
         foreach(LICENSE_FILE IN LISTS LICENSE_FILES)
             get_filename_component(LICENSE_FILENAME "${LICENSE_FILE}" NAME)
-            
+
             # Copy the license file to the build directory immediately
             configure_file("${LICENSE_FILE}" "${LICENSE_OUTPUT_DIR}/${LICENSE_FILENAME}" COPYONLY)
         endforeach()
