@@ -1,5 +1,4 @@
 # CI/CD Workflow
-
 name: "CI/CD"
 
 on:
@@ -12,7 +11,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  test-pre-commit-action:
+  ci:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
