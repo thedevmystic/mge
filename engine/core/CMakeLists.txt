@@ -1,7 +1,7 @@
 # -------------------------------------------------------------------------------------------------
 # MGE Core Target
 # -------------------------------------------------------------------------------------------------
-add_library(MGE_Core STATIC
+add_library(mge_core STATIC
   # -----------------------------------------------------------------------------------------------
   # Dummy
   # -----------------------------------------------------------------------------------------------
@@ -19,12 +19,12 @@ add_library(MGE_Core STATIC
   ${CMAKE_CURRENT_SOURCE_DIR}/public/hal/platform.hpp
   ${CMAKE_CURRENT_SOURCE_DIR}/public/hal/platform_types.hpp
 )
-add_library(MGE::Core ALIAS MGE_Core)
+add_library(MGE::Core ALIAS mge_core)
 
 # -------------------------------------------------------------------------------------------------
 # Include Directories (Public boundaries)
 # -------------------------------------------------------------------------------------------------
-target_include_directories(MGE_Core
+target_include_directories(mge_core
   PUBLIC
 	  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/public>
     $<INSTALL_INTERFACE:include>
@@ -36,7 +36,7 @@ if(MGE_ENABLE_TESTING)
   # -----------------------------------------------------------------------------------------------
   # Core Unit Tests
   # -----------------------------------------------------------------------------------------------
-  add_executable(MGE_Core_Tests
+  add_executable(mge_core_tests
     # ---------------------------------------------------------------------------------------------
     # Dummy
     # ---------------------------------------------------------------------------------------------
@@ -47,12 +47,16 @@ if(MGE_ENABLE_TESTING)
     test/common/types.test.cpp
   )
 
-  target_link_libraries(MGE_Core_Tests
+  target_link_libraries(mge_core_tests
     PRIVATE
       MGE::Core
       Catch2::Catch2WithMain
   )
 
   # Register with CTest
-  add_test(NAME MGE_Core_Tests COMMAND MGE_Core_Tests)
+  add_test(NAME mge_core_tests COMMAND mge_core_tests)
+
+  # Add Coverage
+  include(mge_coverage)
+  mge_coverage(mge_core mge_core_tests)
 endif()
