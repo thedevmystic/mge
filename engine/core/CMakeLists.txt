@@ -26,21 +26,23 @@ target_include_directories(MGE_Core
 	  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/public>
 )
 
-# -------------------------------------------------------------------------------------------------
-# Core Unit Tests
-# -------------------------------------------------------------------------------------------------
-add_executable(MGE_Core_Tests
+if(MGE_ENABLE_TESTING)
   # -----------------------------------------------------------------------------------------------
-	# Common
+  # Core Unit Tests
   # -----------------------------------------------------------------------------------------------
-  test/common/types.test.cpp
-)
+  add_executable(MGE_Core_Tests
+    # ---------------------------------------------------------------------------------------------
+    # Common
+    # ---------------------------------------------------------------------------------------------
+    test/common/types.test.cpp
+  )
 
-target_link_libraries(MGE_Core_Tests
-  PRIVATE
-    MGE::Core
-    Catch2::Catch2WithMain
-)
+  target_link_libraries(MGE_Core_Tests
+    PRIVATE
+      MGE::Core
+      Catch2::Catch2WithMain
+  )
 
-# Register with CTest
-add_test(NAME MGE_Core_Tests COMMAND MGE_Core_Tests)
+  # Register with CTest
+  add_test(NAME MGE_Core_Tests COMMAND MGE_Core_Tests)
+endif()
