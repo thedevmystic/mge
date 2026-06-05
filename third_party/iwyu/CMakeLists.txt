@@ -5,37 +5,56 @@ if(NOT MGE_USE_IWYU)
 	return()
 endif()
 
-# To use iwyu we have to clang++ since it heavily depends on its hooks
-if(NOT ${CMAKE_CXX_COMPILER_ID} STREQUAL "Clang")
-	message(FATAL_ERROR "[MGE] - To use iwyu you must use clang++.")
-endif()
+# Since include-what-you-use is tightly coupled with system libraries, we have to use
+# system-installed version, compiling it on fly id not worth it.
+message(STATUS "[MGE] - Searching for system-installed include-what-you-use...")
+find_program(IWYU_LOCAL_PATH NAMES include-what-you-use iwyu)
 
-if(NOT MGE_USE_SYSTEM_IWYU)
-	# Find LLVM and Clang packages
-	find_package(LLVM REQUIRED CONFIG)
-	find_package(Clang REQUIRED CONFIG)
-
-	# Add add_llvm_executable
-	list(APPEND CMAKE_MODULE_PATH "${LLVM_CMAKE_DIR}")
-	include(AddLLVM)
-
-	# Build Options
-	set(IWYU_ENABLE_TESTS   OFF CACHE BOOL "" FORCE)
-	set(LLVM_INCLUDE_TESTS  OFF CACHE BOOL "" FORCE)
-	set(CLANG_INCLUDE_TESTS OFF CACHE BOOL "" FORCE)
-	set(LLVM_INCLUDE_DOCS   OFF CACHE BOOL "" FORCE)
-	set(LLVM_ENABLE_DOXYGEN OFF CACHE BOOL "" FORCE)
-	set(LLVM_ENABLE_SPHINX  OFF CACHE BOOL "" FORCE)
-
-	# Version Git Tag
-	string(REPLACE "." ";" IWYU_CXX_COMPILER_VERSION "${CMAKE_CXX_COMPILER_VERSION}")
-	list(GET IWYU_CXX_COMPILER_VERSION 0 IWYU_CXX_COMPILER_MAJOR_VERSION)
-	set(IWYU_VERSION "clang_${IWYU_CXX_COMPILER_MAJOR_VERSION}")
-
-  include(mge_third_party_config)
-  mge_third_party_config("iwyu" "${IWYU_VERSION}" "https://github.com/include-what-you-use/include-what-you-use.git")
+# Check if it was found
+if(IWYU_LOCAL_PATH)
+  message(STATUS "[MGE] - System-installed include-what-you-use found.")
 else()
-  include(mge_third_party_config)
-  # Since we can't use IWYU_VERSION in find_package, just find for any iwyu binary (it is dev's responsibility).
-  mge_third_party_config("iwyu" "foo" "https://github.com/include-what-you-use/include-what-you-use.git" OFF)
+	message(FATAL_ERROR "[MGE] - System-installed include-what-you-use was not found.")
 endif()
+
+# Configure arguments
+message(STATUS "[MGE] - Configuring include-what-you-use...")
+
+# Stores mappings into /iwyu_mappings in build dir
+set(IWYU_MAPPINGS_DIR "${CMAKE_BINARY_DIR}/iwyu_mappings")
+
+# Move Project's mappings
+file(COPY "${CMAKE_SOURCE_DIR}/third_party/iwyu/mappings/"
+ DESTINATION ${IWYU_MAPPINGS_DIR}
+ FILES_MATCHING PATTERN "*.imp"
+)
+
+# Generate Standard Library mappings on fly
+execute_process(
+	COMMAND ${IWYU_LOCAL_PATH} --export_mappings ${IWYU_MAPPINGS_DIR}
+	OUTPUT_QUIET
+	ERROR_QUIET
+)
+
+# Configure iwyu mapping arguments
+set(IWYU_LOCAL_ARGS
+  "-Xiwyu" "--mapping_file=${IWYU_MAPPINGS_DIR}/iwyu.mge.imp"
+)
+
+# Based on Standard Library Vendor specify other entry point
+if(CMAKE_CXX_COMPILER_ID MATCHES "MSVC")
+	list(APPEND IWYU_LOCAL_ARGS "-Xiwyu" "--mapping_file=${IWYU_MAPPINGS_DIR}/iwyu.msvc.imp")
+elseif(CMAKE_CXX_COMPILER_ID MATCHES "GNU")
+	list(APPEND IWYU_LOCAL_ARGS "-Xiwyu" "--mapping_file=${IWYU_MAPPINGS_DIR}/iwyu.gcc.imp")
+elseif(CMAKE_CXX_COMPILER_ID MATCHES "Clang")
+	list(APPEND IWYU_LOCAL_ARGS "-Xiwyu" "--mapping_file=${IWYU_MAPPINGS_DIR}/libcxx.imp")
+else()
+	message(FATAL_ERROR "[MGE] - Non supported compiler.")
+endif()
+
+# Promote to Global variables for later consumption in [ROOT]/CMakeLists.txt
+set(IWYU_PATH "{LOCAL_IWYU_PATH}" CACHE INTERNAL "Path to IWYU executable.")
+set(IWYU_ARGS "{LOCAL_IWYU_ARGS}" CACHE INTERNAL "Arguments given to IWYU executable.")
+
+# IWYU is setup globally in [ROOT]/CMakeLists.txt, so we'll continue for now.
+message(STATUS "[MGE] - Include-what-you-use configuration completed.")

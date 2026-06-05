@@ -9,6 +9,4 @@ option(MGE_ENABLE_TESTING  "Build test suites."   ON)
 # Catch2
 option(MGE_USE_SYSTEM_CATCH2 "Use system-installed Catch2 v3." OFF)
 # IWYU
-# Note: Enable MGE_USE_IWYU first before MGE_USE_SYSTEM_IWYU (if wanted to opt in).
-option(MGE_USE_IWYU        "Use include-what-you-use (fetches by default)." OFF)
-option(MGE_USE_SYSTEM_IWYU "Use system-installed include-what-you-use."     OFF)
+option(MGE_USE_IWYU "Use include-what-you-use (only supports system-installed)." OFF)

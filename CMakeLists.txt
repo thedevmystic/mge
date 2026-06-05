@@ -63,6 +63,14 @@ include(mge_include_third_party)
 mge_include_third_party("${CMAKE_CURRENT_SOURCE_DIR}/third_party")
 
 # -------------------------------------------------------------------------------------------------
+# IWYU Setup
+# -------------------------------------------------------------------------------------------------
+# See file third_party/iwyu/CMakeLists.txt for details
+if(MGE_USE_IWYU)
+  set(CXX_INCLUDE_WHAT_YOU_USE "${IWYU_PATH};${IWYU_ARGS}")
+endif()
+
+# -------------------------------------------------------------------------------------------------
 # Testing
 # -------------------------------------------------------------------------------------------------
 if (MGE_ENABLE_TESTING)
