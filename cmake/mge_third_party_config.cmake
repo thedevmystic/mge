@@ -11,7 +11,7 @@ function(mge_third_party_config LIB_NAME GIVEN_TAG GITHUB_URL)
   if(ARGV4)
     set(USE_VER_IN_FP ${ARGV4})
   else()
-    set(USE_VER_IN_FP OFF)
+    set(USE_VER_IN_FP ON)
   endif()
 
   # Check for system-installed if option is set
