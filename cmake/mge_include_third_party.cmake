@@ -1,6 +1,6 @@
 # Runs every third party directory's CMakeLists.txt
 
-function(include_third_party ROOT_DIR)
+function(mge_include_third_party ROOT_DIR)
     set(LICENSE_OUTPUT_DIR "${CMAKE_BINARY_DIR}/licenses")
     
     message(STATUS "[MGE] - Scanning for third-party libraries in: ${ROOT_DIR}...")

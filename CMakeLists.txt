@@ -26,7 +26,13 @@
 # -------------------------------------------------------------------------------------------------
 # CMake Setup
 # -------------------------------------------------------------------------------------------------
-cmake_minimum_required(VERSION 3.20)
+cmake_minimum_required(VERSION 3.30)
+
+# -------------------------------------------------------------------------------------------------
+# CMake Module Configuration
+# -------------------------------------------------------------------------------------------------
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
+include(mge_options)
 
 # Show Greeting Banner
 include(cmake/mge_ascii_banner.cmake)
@@ -44,12 +50,6 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # -------------------------------------------------------------------------------------------------
-# CMake Constants and Options
-# -------------------------------------------------------------------------------------------------
-include(cmake/mge_constants.cmake)
-include(cmake/mge_options.cmake)
-
-# -------------------------------------------------------------------------------------------------
 # Targets
 # -------------------------------------------------------------------------------------------------
 # ...
@@ -57,8 +57,8 @@ include(cmake/mge_options.cmake)
 # -------------------------------------------------------------------------------------------------
 # Third Party
 # -------------------------------------------------------------------------------------------------
-include(cmake/mge_include_third_party.cmake)
-include_third_party("${CMAKE_CURRENT_SOURCE_DIR}/third_party")
+include(mge_include_third_party)
+mge_include_third_party("${CMAKE_CURRENT_SOURCE_DIR}/third_party")
 
 # -------------------------------------------------------------------------------------------------
 # Testing
