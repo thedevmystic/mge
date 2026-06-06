@@ -30,28 +30,12 @@ file(COPY "${CMAKE_SOURCE_DIR}/third_party/iwyu/mappings/"
  FILES_MATCHING PATTERN "*.imp"
 )
 
-# Generate Standard Library mappings on fly
-execute_process(
-	COMMAND ${IWYU_LOCAL_PATH} -Xiwyu --export_mappings ${IWYU_MAPPINGS_DIR}
-	OUTPUT_QUIET
-	ERROR_QUIET
-)
-
 # Configure iwyu mapping arguments
 set(IWYU_LOCAL_ARGS
   "-Xiwyu" "--mapping_file=${IWYU_MAPPINGS_DIR}/iwyu.mge.imp"
+	"-Xiwyu" "--verbose=3"
+	"-Xiwyu" "--comment-style=short"
 )
-
-# Based on Standard Library Vendor specify other entry point
-if(CMAKE_CXX_COMPILER_ID MATCHES "MSVC")
-	list(APPEND IWYU_LOCAL_ARGS "-Xiwyu" "--mapping_file=${IWYU_MAPPINGS_DIR}/iwyu.msvc.imp")
-elseif(CMAKE_CXX_COMPILER_ID MATCHES "GNU")
-	list(APPEND IWYU_LOCAL_ARGS "-Xiwyu" "--mapping_file=${IWYU_MAPPINGS_DIR}/iwyu.gcc.imp")
-elseif(CMAKE_CXX_COMPILER_ID MATCHES "Clang")
-	list(APPEND IWYU_LOCAL_ARGS "-Xiwyu" "--mapping_file=${IWYU_MAPPINGS_DIR}/libcxx.imp")
-else()
-	message(FATAL_ERROR "[MGE] - Non-supported compiler.")
-endif()
 
 # Promote to Global variables for later consumption in [ROOT]/CMakeLists.txt
 set(IWYU_PATH "{LOCAL_IWYU_PATH}" CACHE INTERNAL "Path to IWYU executable.")
