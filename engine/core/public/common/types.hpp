@@ -15,7 +15,7 @@
  *
  * ------------------------------------------------------------------------------------------------
  *
- * @file platform_types.hpp
+ * @file types.hpp
  * @brief Defines unified types across using HAL.
  * @author thedevmystic (Surya) <thedevmystic@gmail.com>
  *
@@ -28,16 +28,12 @@
 #include "hal/platform_types.hpp"
 
 namespace mge {
+inline namespace types {
 
 /**
- * @addtogroup types
+ * @addtogroup common
  * @{
  */
-
-/**
- * @brief Contains primitive types.
- */
-inline namespace types {
 
 /** @brief int types. */
 using int8 = MGE_PLATFORM_INT8;
@@ -64,8 +60,7 @@ using null_type = MGE_PLATFORM_NULL_TYPE;
 inline constexpr int8 EXIT_CODE_SUCCESS = 0;
 inline constexpr int8 EXIT_CODE_FAILURE = 1;
 
+/** @} */  // addtogroup common
+
 }  // namespace types
-
-/** @} */  // addtogroup types
-
 }  // namespace mge

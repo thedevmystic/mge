@@ -202,7 +202,7 @@
  * std::unique_ptr<Base> MGE_NONNULL base; // this also works.
  * @endcode
  *
- * @note This is primary for human readibility and does not provide any guarantees about the type
+ * @note This is primary for human readability and does not provide any guarantees about the type
  * itself.
  */
 #if MGE_COMPILER_CLANG
@@ -224,7 +224,7 @@
  * MGE_NULLABLE Base* base; // tries to define a nullable pointer to base, which is meaningless.
  * @endcode
  *
- * @note This is primary for human readibility and does not provide any guarantees about the type
+ * @note This is primary for human readability and does not provide any guarantees about the type
  * itself.
  */
 #if MGE_COMPILER_CLANG
@@ -234,7 +234,7 @@
 #endif
 
 /**
- * @brief Marks a class compatibile with Nullability annotation.
+ * @brief Marks a class compatible with Nullability annotation.
  *
  * @code
  * struct MGE_NULLABILITY_COMPATIBLE SuperCool9000 {
@@ -242,7 +242,7 @@
  * };
  * @endcode
  *
- * @note This is primary for human readibility and does not provide any guarantees about the type
+ * @note This is primary for human readability and does not provide any guarantees about the type
  * itself.
  */
 #if MGE_COMPILER_CLANG && MGE_HAS_FEATURE(nullability_on_classes)

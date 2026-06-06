@@ -12,6 +12,7 @@ add_library(mge_core STATIC
   # -----------------------------------------------------------------------------------------------
   ${CMAKE_CURRENT_SOURCE_DIR}/public/common/api.hpp
   ${CMAKE_CURRENT_SOURCE_DIR}/public/common/attributes.hpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/public/common/byte.hpp
   ${CMAKE_CURRENT_SOURCE_DIR}/public/common/types.hpp
   # -----------------------------------------------------------------------------------------------
 	# HAL
@@ -47,6 +48,7 @@ if(MGE_ENABLE_TESTING)
     # Common
     # ---------------------------------------------------------------------------------------------
     test/common/types.test.cpp
+    test/common/byte.test.cpp
   )
 
   target_link_libraries(mge_core_tests
