@@ -32,7 +32,7 @@ file(COPY "${CMAKE_SOURCE_DIR}/third_party/iwyu/mappings/"
 
 # Generate Standard Library mappings on fly
 execute_process(
-	COMMAND ${IWYU_LOCAL_PATH} --export_mappings ${IWYU_MAPPINGS_DIR}
+	COMMAND ${IWYU_LOCAL_PATH} -Xiwyu --export_mappings ${IWYU_MAPPINGS_DIR}
 	OUTPUT_QUIET
 	ERROR_QUIET
 )
@@ -50,7 +50,7 @@ elseif(CMAKE_CXX_COMPILER_ID MATCHES "GNU")
 elseif(CMAKE_CXX_COMPILER_ID MATCHES "Clang")
 	list(APPEND IWYU_LOCAL_ARGS "-Xiwyu" "--mapping_file=${IWYU_MAPPINGS_DIR}/libcxx.imp")
 else()
-	message(FATAL_ERROR "[MGE] - Non supported compiler.")
+	message(FATAL_ERROR "[MGE] - Non-supported compiler.")
 endif()
 
 # Promote to Global variables for later consumption in [ROOT]/CMakeLists.txt
