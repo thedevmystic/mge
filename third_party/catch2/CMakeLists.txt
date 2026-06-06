@@ -1,6 +1,6 @@
 # CMake file for Catch2 v3
 
-if (MGE_ENABLE_TESTING)
+if (NOT MGE_ENABLE_TESTING)
 	message(STATUS "[MGE] - Skip Catch2 v3.")
   return()
 endif()
