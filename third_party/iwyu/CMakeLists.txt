@@ -2,7 +2,8 @@
 
 # If not set return
 if(NOT MGE_USE_IWYU)
-	return()
+  message(STATUS "[MGE] - Skip include-what-you-use.")
+  return()
 endif()
 
 # Since include-what-you-use is tightly coupled with system libraries, we have to use
