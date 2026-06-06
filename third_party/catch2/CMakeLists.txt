@@ -1,5 +1,10 @@
 # CMake file for Catch2 v3
 
+if (MGE_ENABLE_TESTING)
+	message(STATUS "[MGE] - Skip Catch2 v3.")
+  return()
+endif()
+
 # Build Options
 set(CATCH_INSTALL_DOCS  OFF CACHE INTERNAL "")
 set(CATCH_BUILD_TESTING OFF CACHE INTERNAL "")
