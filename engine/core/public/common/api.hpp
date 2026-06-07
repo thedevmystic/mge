@@ -16,7 +16,7 @@
  * ------------------------------------------------------------------------------------------------
  *
  * @file api.hpp
- * @brief Defines API macro.
+ * @brief Defines API visibility macro.
  * @author thedevmystic (Surya) <thedevmystic@gmail.com>
  *
  * SPDX-FileCopyrightText: 2026-present Suryansh Singh
@@ -37,12 +37,12 @@
  *
  * @code
  * // For classes / structs
- * struct MGE_API SuperCool9000 {
+ * struct MGE_API Base {
  *   ...
  * };
  *
  * // For functions
- * MGE_API void super();
+ * MGE_API void func();
  * @endcode
  *
  * @note Function has to be marked with it only once (prefer in header).

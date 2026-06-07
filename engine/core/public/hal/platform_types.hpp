@@ -19,8 +19,6 @@
  * @brief Defines unified types across platforms.
  * @author thedevmystic (Surya) <thedevmystic@gmail.com>
  *
- * @note Only targets 64-bit architecture.
- *
  * SPDX-FileCopyrightText: 2026-present Suryansh Singh
  * SPDX-License-Identifier: Apache-2.0
  */
@@ -28,6 +26,11 @@
 #pragma once
 
 #include "hal/compiler.hpp"
+
+/**
+ * @addtogroup hal
+ * @{
+ */
 
 /** @brief Defines unified intN types. */
 #if MGE_COMPILER_GCC || MGE_COMPILER_CLANG
@@ -70,3 +73,5 @@
 
 /** @brief Defines nullptr type. */
 #define MGE_PLATFORM_NULL_TYPE decltype(nullptr)
+
+/** @} */ // addtogroup hal

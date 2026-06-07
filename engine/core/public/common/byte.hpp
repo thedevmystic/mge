@@ -16,7 +16,7 @@
  * ------------------------------------------------------------------------------------------------
  *
  * @file byte.hpp
- * @brief Defines byte type.
+ * @brief Defines raw byte type that only supports bitwise operations.
  * @author thedevmystic (Surya) <thedevmystic@gmail.com>
  *
  * SPDX-FileCopyrightText: 2026-present Suryansh Singh
@@ -29,46 +29,45 @@
 #include "common/attributes.hpp"
 #include "common/types.hpp"
 
-namespace mge {
-inline namespace types {
+namespace mge::types {
 
 /**
  * @addtogroup common
  * @{
  */
 
-/** @brief Byte type. */
+/** @brief A representation of raw byte. */
 enum class MGE_API Byte : uint8 {};
 
 /* =============================================================================================
     Bitwise Operators
    --------------------------------------------------------------------------------------------- */
-/** @brief Bitwise AND operator. */
+/** @brief Bitwise AND operator for `mge::Byte`. */
 MGE_FORCEINLINE constexpr Byte operator&(const Byte lhs, const Byte rhs) {
   return static_cast<Byte>(static_cast<uint8>(lhs) & static_cast<uint8>(rhs));
 }
 
-/** @brief Bitwise OR operator. */
+/** @brief Bitwise OR operator for `mge::Byte`. */
 MGE_FORCEINLINE constexpr Byte operator|(const Byte lhs, const Byte rhs) {
   return static_cast<Byte>(static_cast<uint8>(lhs) | static_cast<uint8>(rhs));
 }
 
-/** @brief Bitwise XOR operator. */
+/** @brief Bitwise XOR operator for `mge::Byte`. */
 MGE_FORCEINLINE constexpr Byte operator^(const Byte lhs, const Byte rhs) {
   return static_cast<Byte>(static_cast<uint8>(lhs) ^ static_cast<uint8>(rhs));
 }
 
-/** @brief Bitwise NOT operator. */
+/** @brief Bitwise NOT operator for `mge::Byte`. */
 MGE_FORCEINLINE constexpr Byte operator~(const Byte b) {
   return static_cast<Byte>(~static_cast<uint8>(b));
 }
 
-/** @brief Bitwise left shift operator. */
+/** @brief Bitwise left shift operator for `mge::Byte`. */
 MGE_FORCEINLINE constexpr Byte operator<<(const Byte b, const int shift) {
   return static_cast<Byte>(static_cast<uint8>(b) << shift);
 }
 
-/** @brief Bitwise right operator. */
+/** @brief Bitwise right operator for `mge::Byte`. */
 MGE_FORCEINLINE constexpr Byte operator>>(const Byte b, const int shift) {
   return static_cast<Byte>(static_cast<uint8>(b) >> shift);
 }
@@ -76,31 +75,31 @@ MGE_FORCEINLINE constexpr Byte operator>>(const Byte b, const int shift) {
 /* =============================================================================================
     Bitwise Compound Operators
    --------------------------------------------------------------------------------------------- */
-/** @brief Bitwise compound AND operator. */
+/** @brief Bitwise compound AND operator for `mge::Byte`. */
 MGE_FORCEINLINE constexpr Byte& operator&=(Byte& lhs, const Byte rhs) {
   lhs = lhs & rhs;
   return lhs;
 }
 
-/** @brief Bitwise compound OR operator. */
+/** @brief Bitwise compound OR operator for `mge::Byte`. */
 MGE_FORCEINLINE constexpr Byte& operator|=(Byte& lhs, const Byte rhs) {
   lhs = lhs | rhs;
   return lhs;
 }
 
-/** @brief Bitwise compound XOR operator. */
+/** @brief Bitwise compound XOR operator for `mge::Byte`. */
 MGE_FORCEINLINE constexpr Byte& operator^=(Byte& lhs, const Byte rhs) {
   lhs = lhs ^ rhs;
   return lhs;
 }
 
-/** @brief Bitwise compound left shift operator. */
+/** @brief Bitwise compound left shift operator for `mge::Byte`. */
 MGE_FORCEINLINE constexpr Byte& operator<<=(Byte& b, const int shift) {
   b = b << shift;
   return b;
 }
 
-/** @brief Bitwise compound right operator. */
+/** @brief Bitwise compound right operator for `mge::Byte`. */
 MGE_FORCEINLINE constexpr Byte& operator>>=(Byte& b, const int shift) {
   b = b >> shift;
   return b;
@@ -108,5 +107,4 @@ MGE_FORCEINLINE constexpr Byte& operator>>=(Byte& b, const int shift) {
 
 /** @} */  // addtogroup common
 
-}  // namespace types
-}  // namespace mge
+}  // namespace mge::types

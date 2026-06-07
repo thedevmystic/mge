@@ -1,0 +1,135 @@
+# ===========================================================================
+# Project Settings
+# ===========================================================================
+DOXYFILE_ENCODING      = UTF-8
+PROJECT_NAME           = "MGE - Mystic Game Engine"
+PROJECT_NUMBER         = "0.1"
+PROJECT_BRIEF          = "A modern vulkan game engine written for performance."
+PROJECT_LOGO           = docs/doxygen/mge.svg
+
+# ===========================================================================
+# Build & Parsing Configurations
+# ===========================================================================
+OUTPUT_DIRECTORY       = docs
+OUTPUT_LANGUAGE        = English
+CREATE_SUBDIRS         = YES
+CREATE_SUBDIRS_LEVEL   = 8
+TAB_SIZE               = 4
+MARKDOWN_SUPPORT       = YES
+MARKDOWN_STRICT        = YES
+TOC_INCLUDE_HEADINGS   = 6
+
+# Parsing modern C++ properties
+BUILTIN_STL_SUPPORT    = YES
+AUTOLINK_SUPPORT       = YES
+IDL_PROPERTY_SUPPORT   = YES
+EXTENSION_MAPPING      = cppm=C++
+
+# Scope Extraction
+EXTRACT_ALL            = NO
+EXTRACT_PRIVATE        = NO
+EXTRACT_PRIV_VIRTUAL   = NO
+EXTRACT_STATIC         = NO
+EXTRACT_LOCAL_CLASSES  = YES
+EXTRACT_LOCAL_METHODS  = NO
+EXTRACT_ANON_NSPACES   = NO
+HIDE_UNDOC_MEMBERS     = NO
+HIDE_UNDOC_CLASSES     = NO
+HIDE_UNDOC_NAMESPACES  = YES
+
+# ===========================================================================
+# Input & Warning Files
+# ===========================================================================
+INPUT                  = engine \
+                         README.md \
+												 docs/doxygen/groups.hpp \
+												 docs/doxygen/namespaces.hpp
+FILE_PATTERNS          = *.c \
+                         *.h \
+                         *.cpp \
+                         *.hpp \
+                         *.cppm
+
+RECURSIVE              = YES
+STRIP_CODE_COMMENTS    = YES
+VERBATIM_HEADERS       = YES
+
+# Strict Modern Warning Settings
+QUIET                  = NO
+WARNINGS               = YES
+WARN_IF_UNDOCUMENTED   = YES
+WARN_IF_DOC_ERROR      = YES
+WARN_IF_INCOMPLETE_DOC = YES
+WARN_FORMAT            = "$file:$line: $text"
+
+# ===========================================================================
+# HTML Layout & Navigation
+# ===========================================================================
+GENERATE_HTML          = YES
+HTML_OUTPUT            = html
+HTML_FILE_EXTENSION    = .html
+
+# Layout Architecture
+GENERATE_TREEVIEW      = YES
+DISABLE_INDEX          = NO
+FULL_SIDEBAR           = NO
+PAGE_OUTLINE_PANEL     = YES
+HTML_DYNAMIC_MENUS     = YES
+HTML_DYNAMIC_SECTIONS  = NO
+
+# Visual Components & Modern Styling
+HTML_COLORSTYLE        = LIGHT
+HTML_CODE_FOLDING      = YES
+HTML_COPY_CLIPBOARD    = YES
+
+# Custom Layout Theme Links
+HTML_HEADER            = docs/doxygen/header.html
+HTML_FOOTER            = docs/doxygen/footer.html
+HTML_EXTRA_STYLESHEET  = docs/doxygen/main.css \
+                         docs/doxygen/sidebar.css \
+                         docs/doxygen/darkmode-toggle.css
+
+HTML_EXTRA_FILES       = docs/doxygen/darkmode-toggle.js \
+                         docs/doxygen/copy-button.js \
+                         docs/doxygen/interactive-toc.js \
+                         docs/doxygen/paragraph-link.js \
+                         docs/doxygen/tabs.js
+
+# ===========================================================================
+# Graphviz Diagram Engine
+# ===========================================================================
+HAVE_DOT               = YES
+DOT_NUM_THREADS        = 0
+DOT_IMAGE_FORMAT       = svg
+INTERACTIVE_SVG        = YES
+
+# Diagram Generation Toggles
+CLASS_GRAPH            = YES
+COLLABORATION_GRAPH    = YES
+INCLUDE_GRAPH          = YES
+INCLUDED_BY_GRAPH      = YES
+DIRECTORY_GRAPH        = YES
+GRAPHICAL_HIERARCHY    = YES
+TEMPLATE_RELATIONS     = YES
+
+# Visual styles for Graphviz elements
+DOT_COMMON_ATTR        = "fontname=Helvetica,fontsize=10"
+DOT_EDGE_ATTR          = "labelfontname=Helvetica,labelfontsize=10"
+DOT_NODE_ATTR          = "shape=box,height=0.2,width=0.4"
+DOT_GRAPH_MAX_NODES    = 50
+MAX_DOT_GRAPH_DEPTH    = 0
+GENERATE_LEGEND        = YES
+
+# ===========================================================================
+# Disabled Formats & Unused Features
+# ===========================================================================
+GENERATE_LATEX         = NO
+GENERATE_RTF           = NO
+GENERATE_MAN           = NO
+GENERATE_XML           = NO
+GENERATE_DOCBOOK       = NO
+GENERATE_AUTOGEN_DEF   = NO
+GENERATE_SQLITE3       = NO
+GENERATE_PERLMOD       = NO
+SEARCHENGINE           = YES
+SERVER_BASED_SEARCH    = NO

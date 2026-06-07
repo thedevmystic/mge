@@ -25,6 +25,11 @@
 
 #pragma once
 
+/**
+ * @addtogroup hal
+ * @{
+ */
+
 /** @brief Tag for MSVC Compiler. */
 #define MGE_COMPILER_MSVC 0
 /** @brief Tag for Clang Compiler. */
@@ -48,3 +53,5 @@
 #else
 #  error "[MGE] - Core - Unsupported compiler."
 #endif
+
+/** @} */ // addtogroup hal

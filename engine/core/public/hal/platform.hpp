@@ -25,6 +25,11 @@
 
 #pragma once
 
+/**
+ * @addtogroup hal
+ * @{
+ */
+
 /** @brief Tag for Windows. */
 #define MGE_PLATFORM_WINDOWS 0
 /** @brief Tag for Linux. */
@@ -46,3 +51,5 @@
 #else
 #  error "[MGE] - Core - Unsupported platform."
 #endif
+
+/** @} */ // addtogroup hal

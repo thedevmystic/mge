@@ -37,3 +37,6 @@
 .idea/
 *.user
 *.suo
+
+# Docs
+docs/html/

@@ -16,7 +16,7 @@
  * ------------------------------------------------------------------------------------------------
  *
  * @file types.hpp
- * @brief Defines unified types across using HAL.
+ * @brief Defines fundamental and trivial types.
  * @author thedevmystic (Surya) <thedevmystic@gmail.com>
  *
  * SPDX-FileCopyrightText: 2026-present Suryansh Singh
@@ -27,40 +27,38 @@
 
 #include "hal/platform_types.hpp"
 
-namespace mge {
-inline namespace types {
+namespace mge::types {
 
 /**
  * @addtogroup common
  * @{
  */
 
-/** @brief int types. */
 using int8 = MGE_PLATFORM_INT8;
 using int16 = MGE_PLATFORM_INT16;
 using int32 = MGE_PLATFORM_INT32;
 using int64 = MGE_PLATFORM_INT64;
 
-/** @brief uint types. */
 using uint8 = MGE_PLATFORM_UINT8;
 using uint16 = MGE_PLATFORM_UINT16;
 using uint32 = MGE_PLATFORM_UINT32;
 using uint64 = MGE_PLATFORM_UINT64;
 
-/** @brief intptr, uintptr, ptrdiff, and usize types. */
 using intptr = MGE_PLATFORM_INTPTR;
 using uintptr = MGE_PLATFORM_UINTPTR;
 using ptrdiff = MGE_PLATFORM_PTRDIFF;
 using usize = MGE_PLATFORM_SIZET;
 
-/** @brief Null type. */
 using null_type = MGE_PLATFORM_NULL_TYPE;
 
-/** @brief Exit codes. */
 inline constexpr int8 EXIT_CODE_SUCCESS = 0;
 inline constexpr int8 EXIT_CODE_FAILURE = 1;
 
 /** @} */  // addtogroup common
 
-}  // namespace types
-}  // namespace mge
+}  // namespace mge::types
+
+// Expose types to mge::
+namespace mge {
+using namespace types;
+}

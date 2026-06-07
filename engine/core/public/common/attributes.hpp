@@ -16,10 +16,8 @@
  * ------------------------------------------------------------------------------------------------
  *
  * @file attributes.hpp
- * @brief Defines core attributes if present, no-op otherwise.
+ * @brief Defines abstraction layer for cross-compiler attributes.
  * @author thedevmystic (Surya) <thedevmystic@gmail.com>
- *
- * @note Baseline is C++20.
  *
  * SPDX-FileCopyrightText: 2026-present Suryansh Singh
  * SPDX-License-Identifier: Apache-2.0
@@ -38,28 +36,28 @@
 #if defined(__has_cpp_attribute)
 #  define MGE_HAS_ATTRIBUTE(attr) __has_cpp_attribute(attr)
 #else
-#  define MGE_HAS_ATTRIBUTE(attr) 0  ///< 0 as we can not determine
+#  define MGE_HAS_ATTRIBUTE(attr) 0  // 0 as we can not determine
 #endif
 
 /** @brief Checks if builtin is supported or not. */
 #if defined(__has_builtin)
 #  define MGE_HAS_BUILTIN(expr) __has_builtin(expr)
 #else
-#  define MGE_HAS_BUILTIN(expr) 0  ///< 0 as we can not determine
+#  define MGE_HAS_BUILTIN(expr) 0  // 0 as we can not determine
 #endif
 
 /** @brief Checks if feature is supported or not. */
 #if defined(__has_feature)
 #  define MGE_HAS_FEATURE(feat) __has_feature(feat)
 #else
-#  define MGE_HAS_FEATURE(feat) 0  ///< 0 as we can not determine
+#  define MGE_HAS_FEATURE(feat) 0  // 0 as we can not determine
 #endif
 
 /** @brief Checks if include is supported or not. */
 #if defined(__has_include)
 #  define MGE_HAS_INCLUDE(inc) __has_include(inc)
 #else
-#  define MGE_HAS_INCLUDE(inc) 0  ///< 0 as we can not determine
+#  define MGE_HAS_INCLUDE(inc) 0  // 0 as we can not determine
 #endif
 
 /* ========================================
@@ -255,8 +253,8 @@
  * @brief Trivial ABI marker.
  *
  * @code
- * struct MGE_TRIVIAL_ABI SuperCool9000 {
- *   ...
+ * struct MGE_TRIVIAL_ABI Base {
+ *   // ...
  * };
  * @endcode
  */

@@ -25,6 +25,11 @@
 
 #pragma once
 
+/**
+ * @addtogroup hal
+ * @{
+ */
+
 /** @brief Tag for X64. */
 #define MGE_ARCHITECTURE_X64 0
 /** @brief Tag for ARM64. */
@@ -42,3 +47,5 @@
 #else
 #  error "[MGE] - Core - Unsupported architecture."
 #endif
+
+/** @} */ // addtogroup hal
