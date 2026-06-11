@@ -32,13 +32,14 @@
  * @{
  */
 
+// #region API Visibility Symbol
 /**
- * @brief API visibility marker.
+ * @brief API visibility marker for general purpose usage.
  *
  * @code
  * // For classes / structs
  * struct MGE_API Base {
- *   ...
+ *   // ...
  * };
  *
  * // For functions
@@ -62,5 +63,45 @@
 #else
 #  define MGE_API
 #endif
+// #endregion
+
+// #region Template API Visibility Symbol
+/**
+ * @brief API visibility marker for template.
+ *
+ * @code
+ * // For classes / structs
+ * template <typename T>
+ * struct MGE_API_TEMPLATE Template {};
+ *
+ * // For functions
+ * template <typename T>
+ * MGE_API_TEMPLATE void funcTemplate(T param);
+ * @endcode
+ *
+ * @note Function has to be marked with it only once (prefer in header).
+ */
+#if MGE_COMPILER_MSVC
+#  if defined(MGE_EXPORT_SYMBOLS)
+#    define MGE_API_TEMPLATE
+#  else
+#    define MGE_API_TEMPLATE
+#  endif
+#elif MGE_COMPILER_CLANG
+#  if defined(MGE_EXPORT_SYMBOLS)
+#    define MGE_API_TEMPLATE __attribute__((type_visibility("default")))
+#  else
+#    define MGE_API_TEMPLATE
+#  endif
+#elif MGE_COMPILER_GCC
+#  if defined(MGE_EXPORT_SYMBOLS)
+#    define MGE_API_TEMPLATE __attribute__((visibility("default")))
+#  else
+#    define MGE_API_TEMPLATE
+#  endif
+#else
+#  define MGE_API_TEMPLATE
+#endif
+// #endregion
 
 /** @} */  // end of addtogroup common

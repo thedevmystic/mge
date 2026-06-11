@@ -21,6 +21,21 @@ add_library(mge_core STATIC
   ${CMAKE_CURRENT_SOURCE_DIR}/public/hal/compiler.hpp
   ${CMAKE_CURRENT_SOURCE_DIR}/public/hal/platform.hpp
   ${CMAKE_CURRENT_SOURCE_DIR}/public/hal/platform_types.hpp
+  # -----------------------------------------------------------------------------------------------
+  # Traits
+  # -----------------------------------------------------------------------------------------------
+  ${CMAKE_CURRENT_SOURCE_DIR}/public/traits/core.hpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/public/traits/cv_traits.hpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/public/traits/logical_operators.hpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/public/traits/member_introspection.hpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/public/traits/pointer_transformations.hpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/public/traits/primary_classification.hpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/public/traits/reference_transformations.hpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/public/traits/secondary_classification.hpp
+  # -----------------------------------------------------------------------------------------------
+  # Utility
+  # -----------------------------------------------------------------------------------------------
+  ${CMAKE_CURRENT_SOURCE_DIR}/public/utility/declval.hpp
 )
 add_library(MGE::Core ALIAS mge_core)
 
@@ -49,6 +64,17 @@ if(MGE_ENABLE_TESTING)
     # ---------------------------------------------------------------------------------------------
     test/common/types.test.cpp
     test/common/byte.test.cpp
+    # -----------------------------------------------------------------------------------------------
+    # Traits
+    # -----------------------------------------------------------------------------------------------
+    test/traits/core.test.cpp
+    test/traits/cv_traits.test.cpp
+    test/traits/logical_operators.test.cpp
+    test/traits/member_introspection.test.cpp
+    test/traits/primary_classification.test.cpp
+    test/traits/pointer_transformations.test.cpp
+    test/traits/reference_transformations.test.cpp
+    test/traits/secondary_classification.test.cpp
   )
 
   target_link_libraries(mge_core_tests
