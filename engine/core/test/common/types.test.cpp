@@ -75,8 +75,8 @@ TEST_CASE("mge::types - Pointer and Size Types Verification", "[core][types][poi
   }
 
   SECTION("Size and Pointer Difference Types") {
-    STATIC_REQUIRE(sizeof(usize) == sizeof(std::size_t));
-    STATIC_REQUIRE(std::is_unsigned_v<usize>);
+    STATIC_REQUIRE(sizeof(size_t) == sizeof(std::size_t));
+    STATIC_REQUIRE(std::is_unsigned_v<size_t>);
 
     STATIC_REQUIRE(sizeof(ptrdiff) == sizeof(std::ptrdiff_t));
     STATIC_REQUIRE(std::is_signed_v<ptrdiff>);

@@ -47,7 +47,7 @@ using uint64 = MGE_PLATFORM_UINT64;
 using intptr = MGE_PLATFORM_INTPTR;
 using uintptr = MGE_PLATFORM_UINTPTR;
 using ptrdiff = MGE_PLATFORM_PTRDIFF;
-using usize = MGE_PLATFORM_SIZET;
+using size_t = MGE_PLATFORM_SIZET;
 
 using null_type = MGE_PLATFORM_NULL_TYPE;
 

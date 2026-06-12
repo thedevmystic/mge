@@ -15,7 +15,7 @@
  *
  * ------------------------------------------------------------------------------------------------
  *
- * @file type_identity.hpp
+ * @file cv_traits.hpp
  * @brief Consolidated type traits for CV-Qualifiers.
  * @author thedevmystic (Surya) <thedevmystic@gmail.com>
  *

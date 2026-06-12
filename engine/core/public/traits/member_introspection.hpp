@@ -23,7 +23,9 @@
  * - `is_standard_layout` / 
  *   `is_standard_layout_v`    : Checks if a given type represents a standard layout type.
  * - `is_trivially_copyable` / 
- *   `is_trivially_copyable_v` : Checks if a given type represents a  trivially copyable type.
+ *   `is_trivially_copyable_v` : Checks if a given type represents a trivially copyable type.
+ * - `is_literal_type` /
+ *   `is_literal_type_v`       : Checks if a given type represents a literal type type.
  * - `is_pod` / `is_pod_v`                  : Checks if a given type represents a pod type.
  * - `is_trivial` / `is_trivial_v`          : Checks if a given type represents a trivial type.
  * - `is_empty` / `is_empty_v`              : Checks if a given type represents a empty type.

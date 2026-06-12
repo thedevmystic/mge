@@ -20,8 +20,9 @@
  * @author thedevmystic (Surya) <thedevmystic@gmail.com>
  *
  * This header provides the following relationship traits:
- * - `is_same` / `is_same_v`   : Checks if two types are the same type.
- * - `is_base_of` / `is_base_of_v`   : Checks if one type is base of the other one.
+ * - `is_same` / `is_same_v`                 : Checks if two types are the same type.
+ * - `is_convertible` / `is_convertible_v`   : Checks if a type is convertible to other type.
+ * - `is_base_of` / `is_base_of_v`           : Checks if a type is base of the other type.
  *
  * SPDX-FileCopyrightText: 2026-present Suryansh Singh
  * SPDX-License-Identifier: Apache-2.0
@@ -31,6 +32,7 @@
 
 #include "common/api.hpp"
 #include "traits/core.hpp"
+#include "traits/member_introspection.hpp"
 
 // #region Detail
 namespace mge::traits::detail {
@@ -45,7 +47,11 @@ template <typename T>
 struct is_same_helper<T, T> : true_type {};
 // #endregion
 
-
+// #region Convertible Type Trait Helper
+/** @brief is_convertible helper. */
+template <typename T, typename U>
+struct is_convertible_helper : integral_constant<bool, __is_convertible_to(T, U) && !is_abstract_v<U>> {};
+// #endregion
 
 // #region Base Of Type Trait Helper
 /** @brief is_base_of helper. */
