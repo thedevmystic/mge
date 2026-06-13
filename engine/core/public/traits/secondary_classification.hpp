@@ -132,7 +132,7 @@ template <typename T>
 struct MGE_API_TEMPLATE is_reference : detail::is_reference_helper<T> {};
 
 /**
- * @brief value alias for is_reference.
+ * @brief Value alias for is_reference.
  * @ingroup traits
  */
 template <typename T>
@@ -149,7 +149,7 @@ template <typename T>
 struct MGE_API_TEMPLATE is_arithmetic : detail::is_arithmetic_helper<T> {};
 
 /**
- * @brief value alias for is_arithmetic.
+ * @brief Value alias for is_arithmetic.
  * @ingroup traits
  */
 template <typename T>
@@ -166,7 +166,7 @@ template <typename T>
 struct MGE_API_TEMPLATE is_fundamental : detail::is_fundamental_helper<T> {};
 
 /**
- * @brief value alias for is_fundamental.
+ * @brief Value alias for is_fundamental.
  * @ingroup traits
  */
 template <typename T>
@@ -183,7 +183,7 @@ template <typename T>
 struct MGE_API_TEMPLATE is_member_pointer : detail::is_member_pointer_helper<T> {};
 
 /**
- * @brief value alias for is_member_pointer.
+ * @brief Value alias for is_member_pointer.
  * @ingroup traits
  */
 template <typename T>
@@ -200,7 +200,7 @@ template <typename T>
 struct MGE_API_TEMPLATE is_scoped_enum : detail::is_scoped_enum_helper<T> {};
 
 /**
- * @brief value alias for is_scoped_enum.
+ * @brief Value alias for is_scoped_enum.
  * @ingroup traits
  */
 template <typename T>
@@ -217,7 +217,7 @@ template <typename T>
 struct MGE_API_TEMPLATE is_scalar : detail::is_scalar_helper<T> {};
 
 /**
- * @brief value alias for is_scalar.
+ * @brief Value alias for is_scalar.
  * @ingroup traits
  */
 template <typename T>
@@ -234,7 +234,7 @@ template <typename T>
 struct MGE_API_TEMPLATE is_object : detail::is_object_helper<T> {};
 
 /**
- * @brief value alias for is_object.
+ * @brief Value alias for is_object.
  * @ingroup traits
  */
 template <typename T>
@@ -251,7 +251,7 @@ template <typename T>
 struct MGE_API_TEMPLATE is_compound : detail::is_compound_helper<T> {};
 
 /**
- * @brief value alias for is_compound.
+ * @brief Value alias for is_compound.
  * @ingroup traits
  */
 template <typename T>

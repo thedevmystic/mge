@@ -55,7 +55,16 @@ template <typename T>
 struct local_remove_cv<const volatile T> {
   using type = T;
 };
-} // namespace reference_transformations
+}  // namespace reference_transformations
+// #endregion
+
+// #region Local Same
+namespace reference_transformations {
+template <typename T, typename U>
+struct local_is_same : false_type {};
+template <typename T>
+struct local_is_same<T, T> : true_type {};
+}  // namespace reference_transformations
 // #endregion
 
 // #region Internal Referenceable type Trait Helper
@@ -68,12 +77,14 @@ template <typename T>
 T& test(int);
 template <typename T>
 size_two test(...);
-} // namespace is_referenceable_impl
+}  // namespace is_referenceable_impl
 
 /** @brief Checks a type, if it can be referenced. */
 template <typename T>
-struct is_referenceable : integral_constant<bool, sizeof(is_referenceable_impl::test<T>(0)) != 2> {};
-} // namespace reference_transformations
+struct is_referenceable : integral_constant<bool, !reference_transformations::local_is_same<
+                                                      decltype(is_referenceable_impl::test<T>(0)),
+                                                      is_referenceable_impl::size_two>::value> {};
+}  // namespace reference_transformations
 // #endregion
 
 // #region Add Lvalue Reference type Trait Helper
@@ -127,7 +138,8 @@ struct remove_reference_helper<T&&> {
 /** @brief remove_cvref helper. */
 template <typename T>
 struct remove_cvref_helper {
-  using type = typename reference_transformations::local_remove_cv<typename remove_reference_helper<T>::type>::type;
+  using type = typename reference_transformations::local_remove_cv<
+      typename remove_reference_helper<T>::type>::type;
 };
 // #endregion
 
@@ -139,7 +151,7 @@ namespace mge::traits {
 
 // #region Reference Transformations - Add Lvalue Reference
 /**
- * @brief type trait to add lvalue reference.
+ * @brief Type trait to add lvalue reference.
  * @tparam T type of value.
  * @ingroup traits
  */
@@ -147,7 +159,7 @@ template <typename T>
 struct MGE_API_TEMPLATE add_lvalue_reference : detail::add_lvalue_reference_helper<T> {};
 
 /**
- * @brief type alias add_lvalue_reference.
+ * @brief Type alias add_lvalue_reference.
  * @ingroup traits
  */
 template <typename T>
@@ -156,7 +168,7 @@ using add_lvalue_reference_t = typename add_lvalue_reference<T>::type;
 
 // #region Reference Transformations - Add Rvalue Reference
 /**
- * @brief type trait to add rvalue reference.
+ * @brief Type trait to add rvalue reference.
  * @tparam T type of value.
  * @ingroup traits
  */
@@ -164,7 +176,7 @@ template <typename T>
 struct MGE_API_TEMPLATE add_rvalue_reference : detail::add_rvalue_reference_helper<T> {};
 
 /**
- * @brief type alias add_rvalue_reference.
+ * @brief Type alias add_rvalue_reference.
  * @ingroup traits
  */
 template <typename T>
@@ -173,7 +185,7 @@ using add_rvalue_reference_t = typename add_rvalue_reference<T>::type;
 
 // #region Reference Transformations - Remove Reference
 /**
- * @brief type trait to remove reference.
+ * @brief Type trait to remove reference.
  * @tparam T type of value.
  * @ingroup traits
  */
@@ -181,7 +193,7 @@ template <typename T>
 struct MGE_API_TEMPLATE remove_reference : detail::remove_reference_helper<T> {};
 
 /**
- * @brief type alias remove_reference.
+ * @brief Type alias remove_reference.
  * @ingroup traits
  */
 template <typename T>
@@ -190,7 +202,7 @@ using remove_reference_t = typename remove_reference<T>::type;
 
 // #region Reference CV-Qualifiers Transformations - Remove Reference CV-Qualifiers
 /**
- * @brief type trait to remove reference and cv-qualifiers.
+ * @brief Type trait to remove reference and cv-qualifiers.
  * @tparam T type of value.
  * @ingroup traits
  */
@@ -198,7 +210,7 @@ template <typename T>
 struct MGE_API_TEMPLATE remove_cvref : detail::remove_cvref_helper<T> {};
 
 /**
- * @brief type alias remove_cvref.
+ * @brief Type alias remove_cvref.
  * @ingroup traits
  */
 template <typename T>

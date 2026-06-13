@@ -85,7 +85,7 @@ namespace mge::traits {
 
 // #region Pointer Transformations - Add Pointer
 /**
- * @brief type trait to add pointer.
+ * @brief Type trait to add pointer.
  * @tparam T type of value.
  * @ingroup traits
  */
@@ -93,7 +93,7 @@ template <typename T>
 struct MGE_API_TEMPLATE add_pointer : detail::add_pointer_helper<T> {};
 
 /**
- * @brief type alias add_pointer.
+ * @brief Type alias add_pointer.
  * @ingroup traits
  */
 template <typename T>
@@ -102,7 +102,7 @@ using add_pointer_t = typename add_pointer<T>::type;
 
 // #region Pointer Transformations - Remove Pointer
 /**
- * @brief type trait to remove pointer.
+ * @brief Type trait to remove pointer.
  * @tparam T type of value.
  * @ingroup traits
  */
@@ -110,7 +110,7 @@ template <typename T>
 struct MGE_API_TEMPLATE remove_pointer : detail::remove_pointer_helper<T> {};
 
 /**
- * @brief type alias remove_pointer.
+ * @brief Type alias remove_pointer.
  * @ingroup traits
  */
 template <typename T>

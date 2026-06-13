@@ -16,7 +16,7 @@
  * ------------------------------------------------------------------------------------------------
  *
  * @file declval.hpp
- * @brief Defines declval utility helper to produce rvalue reference in unevaluated contexts.
+ * @brief Defines forward utility helper for perfect forwarding.
  * @author thedevmystic (Surya) <thedevmystic@gmail.com>
  *
  * SPDX-FileCopyrightText: 2026-present Suryansh Singh
@@ -26,18 +26,27 @@
 #pragma once
 
 #include "common/api.hpp"
+#include "traits/primary_classification.hpp"
 #include "traits/reference_transformations.hpp"
 
 namespace mge::utility {
 
 /**
- * @brief Declval utility helper to produce rvalue references in unevaluated contexts (i.e., sizeof,
- *        decltype, noexcept).
+ * @brief Forward utility to perfectly forward any argument (preserving references).
  * @tparam T Type of the object.
- * @returns Rvalue reference of the object `(T)`.
+ * @returns Reference of the object `(T)` (preserved lvalue or rvalue).
  * @ingroup utility
  */
 template <typename T>
-typename ::mge::traits::add_rvalue_reference<T>::type declval() noexcept;
+constexpr T&& forward(::mge::traits::remove_reference_t<T>& t) noexcept {
+  return static_cast<T&&>(t);
+}
 
-} // namespace mge::utility
+template <typename T>
+constexpr T&& forward(::mge::traits::remove_reference_t<T>&& t) noexcept {
+  static_assert(!::mge::traits::is_lvalue_reference_v<T>,
+                "template argument substituting T is an lvalue reference type");
+  return static_cast<T&&>(t);
+}
+
+}  // namespace mge::utility

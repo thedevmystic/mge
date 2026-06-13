@@ -316,7 +316,7 @@ template <typename T>
 struct MGE_API_TEMPLATE is_void : detail::is_void_helper<T> {};
 
 /**
- * @brief value alias for is_void.
+ * @brief Value alias for is_void.
  * @ingroup traits
  */
 template <typename T>
@@ -333,7 +333,7 @@ template <typename T>
 struct MGE_API_TEMPLATE is_null_pointer : detail::is_null_pointer_helper<T> {};
 
 /**
- * @brief value alias for is_null_pointer.
+ * @brief Value alias for is_null_pointer.
  * @ingroup traits
  */
 template <typename T>
@@ -350,7 +350,7 @@ template <typename T>
 struct MGE_API_TEMPLATE is_integral : detail::is_integral_helper<T> {};
 
 /**
- * @brief value alias for is_integral.
+ * @brief Value alias for is_integral.
  * @ingroup traits
  */
 template <typename T>
@@ -367,7 +367,7 @@ template <typename T>
 struct MGE_API_TEMPLATE is_floating_point : detail::is_floating_point_helper<T> {};
 
 /**
- * @brief value alias for is_floating_point.
+ * @brief Value alias for is_floating_point.
  * @ingroup traits
  */
 template <typename T>
@@ -384,7 +384,7 @@ template <typename T>
 struct MGE_API_TEMPLATE is_array : detail::is_array_helper<T> {};
 
 /**
- * @brief value alias for is_array.
+ * @brief Value alias for is_array.
  * @ingroup traits
  */
 template <typename T>
@@ -401,7 +401,7 @@ template <typename T>
 struct MGE_API_TEMPLATE is_pointer : detail::is_pointer_helper<T> {};
 
 /**
- * @brief value alias for is_pointer.
+ * @brief Value alias for is_pointer.
  * @ingroup traits
  */
 template <typename T>
@@ -418,7 +418,7 @@ template <typename T>
 struct MGE_API_TEMPLATE is_lvalue_reference : detail::is_lvalue_reference_helper<T> {};
 
 /**
- * @brief value alias for is_lvalue_reference.
+ * @brief Value alias for is_lvalue_reference.
  * @ingroup traits
  */
 template <typename T>
@@ -435,7 +435,7 @@ template <typename T>
 struct MGE_API_TEMPLATE is_rvalue_reference : detail::is_rvalue_reference_helper<T> {};
 
 /**
- * @brief value alias for is_rvalue_reference.
+ * @brief Value alias for is_rvalue_reference.
  * @ingroup traits
  */
 template <typename T>
@@ -452,7 +452,7 @@ template <typename T>
 struct MGE_API_TEMPLATE is_enum : detail::is_enum_helper<T> {};
 
 /**
- * @brief value alias for is_enum.
+ * @brief Value alias for is_enum.
  * @ingroup traits
  */
 template <typename T>
@@ -469,7 +469,7 @@ template <typename T>
 struct MGE_API_TEMPLATE is_class : detail::is_class_helper<T> {};
 
 /**
- * @brief value alias for is_class.
+ * @brief Value alias for is_class.
  * @ingroup traits
  */
 template <typename T>
@@ -486,7 +486,7 @@ template <typename T>
 struct MGE_API_TEMPLATE is_union : detail::is_union_helper<T> {};
 
 /**
- * @brief value alias for is_union.
+ * @brief Value alias for is_union.
  * @ingroup traits
  */
 template <typename T>
@@ -503,7 +503,7 @@ template <typename T>
 struct MGE_API_TEMPLATE is_function : detail::is_function_helper<T> {};
 
 /**
- * @brief value alias for is_function.
+ * @brief Value alias for is_function.
  * @ingroup traits
  */
 template <typename T>
@@ -521,7 +521,7 @@ struct MGE_API_TEMPLATE is_member_function_pointer : detail::is_member_function_
 };
 
 /**
- * @brief value alias for is_member_function_pointer.
+ * @brief Value alias for is_member_function_pointer.
  * @ingroup traits
  */
 template <typename T>
@@ -538,7 +538,7 @@ template <typename T>
 struct MGE_API_TEMPLATE is_member_object_pointer : detail::is_member_object_pointer_helper<T> {};
 
 /**
- * @brief value alias for is_member_object_pointer.
+ * @brief Value alias for is_member_object_pointer.
  * @ingroup traits
  */
 template <typename T>

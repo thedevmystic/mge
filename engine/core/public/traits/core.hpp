@@ -58,7 +58,7 @@ struct MGE_API_TEMPLATE conditional<false, If, Then> {
 };
 
 /**
- * @brief type alias for conditional.
+ * @brief Type alias for conditional.
  * @ingroup traits
  */
 template <bool Cond, typename If, typename Then>
@@ -80,7 +80,7 @@ struct MGE_API_TEMPLATE enable_if<true, T> {
 };
 
 /**
- * @brief type alias for enable_if.
+ * @brief Type alias for enable_if.
  * @ingroup traits
  */
 template <bool Cond, typename T = void>

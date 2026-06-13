@@ -20,9 +20,9 @@
  * @author thedevmystic (Surya) <thedevmystic@gmail.com>
  *
  * This header provides the following classification traits:
- * - `is_standard_layout` / 
+ * - `is_standard_layout` /
  *   `is_standard_layout_v`    : Checks if a given type represents a standard layout type.
- * - `is_trivially_copyable` / 
+ * - `is_trivially_copyable` /
  *   `is_trivially_copyable_v` : Checks if a given type represents a trivially copyable type.
  * - `is_literal_type` /
  *   `is_literal_type_v`       : Checks if a given type represents a literal type type.
@@ -41,7 +41,9 @@
 #pragma once
 
 #include "common/api.hpp"
+#include "traits/array_traits.hpp"
 #include "traits/core.hpp"
+#include "traits/secondary_classification.hpp"
 
 // #region Detail
 namespace mge::traits::detail {
@@ -56,6 +58,12 @@ struct is_standard_layout_helper : integral_constant<bool, __is_standard_layout(
 template <typename T>
 /** @brief is_trivially_copyable helper. */
 struct is_trivially_copyable_helper : integral_constant<bool, __is_trivially_copyable(T)> {};
+// #endregion
+
+// #region Literal Type Trait Helper
+template <typename T>
+/** @brief is_literal_type helper. */
+struct is_literal_type_helper : integral_constant<bool, __is_literal_type(T)> {};
 // #endregion
 
 // #region POD Type Trait Helper
@@ -116,7 +124,7 @@ template <typename T>
 struct MGE_API_TEMPLATE is_standard_layout : detail::is_standard_layout_helper<T> {};
 
 /**
- * @brief value alias for is_standard_layout.
+ * @brief Value alias for is_standard_layout.
  * @ingroup traits
  */
 template <typename T>
@@ -133,11 +141,28 @@ template <typename T>
 struct MGE_API_TEMPLATE is_trivially_copyable : detail::is_trivially_copyable_helper<T> {};
 
 /**
- * @brief value alias for is_trivially_copyable.
+ * @brief Value alias for is_trivially_copyable.
  * @ingroup traits
  */
 template <typename T>
 inline constexpr bool is_trivially_copyable_v = is_trivially_copyable<T>::value;
+// #endregion
+
+// #region Member Introspection Trait - Literal Type
+/**
+ * @brief A type used to check if an object is literal type.
+ * @tparam T Type of the object.
+ * @ingroup traits
+ */
+template <typename T>
+struct MGE_API_TEMPLATE is_literal_type : detail::is_literal_type_helper<T> {};
+
+/**
+ * @brief Value alias for is_literal_type.
+ * @ingroup traits
+ */
+template <typename T>
+inline constexpr bool is_literal_type_v = is_literal_type<T>::value;
 // #endregion
 
 // #region Member Introspection Trait - POD
@@ -150,7 +175,7 @@ template <typename T>
 struct MGE_API_TEMPLATE is_pod : detail::is_pod_helper<T> {};
 
 /**
- * @brief value alias for is_pod.
+ * @brief Value alias for is_pod.
  * @ingroup traits
  */
 template <typename T>
@@ -167,7 +192,7 @@ template <typename T>
 struct MGE_API_TEMPLATE is_trivial : detail::is_trivial_helper<T> {};
 
 /**
- * @brief value alias for is_trivial.
+ * @brief Value alias for is_trivial.
  * @ingroup traits
  */
 template <typename T>
@@ -184,7 +209,7 @@ template <typename T>
 struct MGE_API_TEMPLATE is_empty : detail::is_empty_helper<T> {};
 
 /**
- * @brief value alias for is_empty.
+ * @brief Value alias for is_empty.
  * @ingroup traits
  */
 template <typename T>
@@ -201,7 +226,7 @@ template <typename T>
 struct MGE_API_TEMPLATE is_polymorphic : detail::is_polymorphic_helper<T> {};
 
 /**
- * @brief value alias for is_polymorphic.
+ * @brief Value alias for is_polymorphic.
  * @ingroup traits
  */
 template <typename T>
@@ -218,7 +243,7 @@ template <typename T>
 struct MGE_API_TEMPLATE is_abstract : detail::is_abstract_helper<T> {};
 
 /**
- * @brief value alias for is_abstract.
+ * @brief Value alias for is_abstract.
  * @ingroup traits
  */
 template <typename T>
@@ -235,7 +260,7 @@ template <typename T>
 struct MGE_API_TEMPLATE is_final : detail::is_final_helper<T> {};
 
 /**
- * @brief value alias for is_final.
+ * @brief Value alias for is_final.
  * @ingroup traits
  */
 template <typename T>
@@ -252,7 +277,7 @@ template <typename T>
 struct MGE_API_TEMPLATE is_aggregate : detail::is_aggregate_helper<T> {};
 
 /**
- * @brief value alias for is_aggregate.
+ * @brief Value alias for is_aggregate.
  * @ingroup traits
  */
 template <typename T>

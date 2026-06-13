@@ -24,6 +24,7 @@ add_library(mge_core STATIC
   # -----------------------------------------------------------------------------------------------
   # Traits
   # -----------------------------------------------------------------------------------------------
+  ${CMAKE_CURRENT_SOURCE_DIR}/public/traits/array_traits.hpp
   ${CMAKE_CURRENT_SOURCE_DIR}/public/traits/core.hpp
   ${CMAKE_CURRENT_SOURCE_DIR}/public/traits/cv_traits.hpp
   ${CMAKE_CURRENT_SOURCE_DIR}/public/traits/logical_operators.hpp
@@ -31,11 +32,13 @@ add_library(mge_core STATIC
   ${CMAKE_CURRENT_SOURCE_DIR}/public/traits/pointer_transformations.hpp
   ${CMAKE_CURRENT_SOURCE_DIR}/public/traits/primary_classification.hpp
   ${CMAKE_CURRENT_SOURCE_DIR}/public/traits/reference_transformations.hpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/public/traits/relationships.hpp
   ${CMAKE_CURRENT_SOURCE_DIR}/public/traits/secondary_classification.hpp
   # -----------------------------------------------------------------------------------------------
   # Utility
   # -----------------------------------------------------------------------------------------------
   ${CMAKE_CURRENT_SOURCE_DIR}/public/utility/declval.hpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/public/utility/forward.hpp
 )
 add_library(MGE::Core ALIAS mge_core)
 
@@ -67,6 +70,7 @@ if(MGE_ENABLE_TESTING)
     # -----------------------------------------------------------------------------------------------
     # Traits
     # -----------------------------------------------------------------------------------------------
+    test/traits/array_traits.test.cpp
     test/traits/core.test.cpp
     test/traits/cv_traits.test.cpp
     test/traits/logical_operators.test.cpp
@@ -74,6 +78,7 @@ if(MGE_ENABLE_TESTING)
     test/traits/primary_classification.test.cpp
     test/traits/pointer_transformations.test.cpp
     test/traits/reference_transformations.test.cpp
+    test/traits/relationships.test.cpp
     test/traits/secondary_classification.test.cpp
   )
 

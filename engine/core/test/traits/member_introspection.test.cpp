@@ -28,38 +28,42 @@
 #include <catch2/catch_test_macros.hpp>
 
 namespace {
-  struct EmptyStruct {};
-  
-  struct StandardLayoutStruct {
-    int x;
-    double y;
-  };
+struct EmptyStruct {};
 
-  struct TrivialStruct {
-    int x;
-  };
+struct StandardLayoutStruct {
+  int x;
+  double y;
+};
 
-  struct NonTrivialStruct {
-    NonTrivialStruct() {} // User-defined constructor makes it non-trivial
-    ~NonTrivialStruct() {}
-  };
+struct TrivialStruct {
+  int x;
+};
 
-  struct PolymorphicClass {
-    virtual void foo() {}
-    virtual ~PolymorphicClass() = default;
-  };
+struct NonTrivialStruct {
+  NonTrivialStruct() {} // User-defined constructor makes it non-trivial
+  ~NonTrivialStruct() {}
+};
 
-  struct AbstractClass {
-    virtual void pure_virtual() = 0;
-    virtual ~AbstractClass() = default;
-  };
+struct LiteralStruct {
+  int x;
+};
 
-  struct FinalClass final {};
+struct PolymorphicClass {
+  virtual void foo() {}
+  virtual ~PolymorphicClass() = default;
+};
 
-  struct AggregateStruct {
-    int a;
-    float b;
-  };
+struct AbstractClass {
+  virtual void pure_virtual() = 0;
+  virtual ~AbstractClass() = default;
+};
+
+struct FinalClass final {};
+
+struct AggregateStruct {
+  int a;
+  float b;
+};
 }
 
 TEST_CASE("mge::traits - Member Introspection Verification", "[core][traits][member_introspection]") {
@@ -77,6 +81,15 @@ TEST_CASE("mge::traits - Member Introspection Verification", "[core][traits][mem
     STATIC_REQUIRE(is_trivially_copyable_v<TrivialStruct>);
     STATIC_REQUIRE(is_trivially_copyable_v<int>);
     STATIC_REQUIRE_FALSE(is_trivially_copyable_v<NonTrivialStruct>);
+  }
+
+  SECTION("is_literal_type Verification") {
+    STATIC_REQUIRE(is_literal_type<int>::value);
+    STATIC_REQUIRE(is_literal_type_v<int[5][10]>);
+    STATIC_REQUIRE(is_literal_type_v<int&>);
+    STATIC_REQUIRE(is_literal_type_v<LiteralStruct>);
+    STATIC_REQUIRE_FALSE(is_literal_type_v<NonTrivialStruct>);
+    STATIC_REQUIRE_FALSE(is_literal_type_v<PolymorphicClass>);
   }
 
   SECTION("is_pod Verification") {
