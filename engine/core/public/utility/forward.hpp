@@ -45,7 +45,7 @@ constexpr T&& forward(::mge::traits::remove_reference_t<T>& t) noexcept {
 template <typename T>
 constexpr T&& forward(::mge::traits::remove_reference_t<T>&& t) noexcept {
   static_assert(!::mge::traits::is_lvalue_reference_v<T>,
-                "template argument substituting T is an lvalue reference type");
+                "Template argument substituting T is an lvalue reference type.");
   return static_cast<T&&>(t);
 }
 

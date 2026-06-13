@@ -15,7 +15,7 @@
  *
  * ------------------------------------------------------------------------------------------------
  *
- * @file pointer_transformations.hpp
+ * @file member_introspection.hpp
  * @brief Consolidated type traits for introspection of any type.
  * @author thedevmystic (Surya) <thedevmystic@gmail.com>
  *

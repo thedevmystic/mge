@@ -27,6 +27,7 @@ add_library(mge_core STATIC
   ${CMAKE_CURRENT_SOURCE_DIR}/public/traits/array_traits.hpp
   ${CMAKE_CURRENT_SOURCE_DIR}/public/traits/core.hpp
   ${CMAKE_CURRENT_SOURCE_DIR}/public/traits/cv_traits.hpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/public/traits/integral_properties.hpp
   ${CMAKE_CURRENT_SOURCE_DIR}/public/traits/logical_operators.hpp
   ${CMAKE_CURRENT_SOURCE_DIR}/public/traits/member_introspection.hpp
   ${CMAKE_CURRENT_SOURCE_DIR}/public/traits/pointer_transformations.hpp
@@ -73,6 +74,7 @@ if(MGE_ENABLE_TESTING)
     test/traits/array_traits.test.cpp
     test/traits/core.test.cpp
     test/traits/cv_traits.test.cpp
+    test/traits/integral_properties.test.cpp
     test/traits/logical_operators.test.cpp
     test/traits/member_introspection.test.cpp
     test/traits/primary_classification.test.cpp

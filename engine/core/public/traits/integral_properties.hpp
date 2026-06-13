@@ -15,7 +15,7 @@
  *
  * ------------------------------------------------------------------------------------------------
  *
- * @file pointer_transformations.hpp
+ * @file integral_properties.hpp
  * @brief Consolidated query and transformation type traits for integral properties.
  * @author thedevmystic (Surya) <thedevmystic@gmail.com>
  *
@@ -35,6 +35,7 @@
 #include "traits/core.hpp"
 #include "traits/cv_traits.hpp"
 #include "traits/primary_classification.hpp"
+#include "traits/relationships.hpp"
 #include "traits/secondary_classification.hpp"
 
 // #region Detail
@@ -97,7 +98,7 @@ using signed_base_type =
   conditional_t<is_same_v<base_type<T>, char32_t>,           int,
   // Already signed — pass through
   base_type<T>
-  >>>>>>>>>>>;
+  >>>>>>>>>>;
 // clang-format on
 /** Re-apply const. */
 template <typename T>
@@ -107,11 +108,130 @@ using with_const =
 template <typename T>
 using with_volatile = conditional_t<is_volatile_v<T>, add_volatile_t<with_const<T>>, with_const<T>>;
 }  // namespace make_signed_impl
+
+/** @brief make_signed helper. */
+template <typename T>
+struct make_signed_helper {
+  static_assert(is_integral_v<T> && !is_same_v<T, bool>,
+                "make_signed requires an integral type except bool.");
+  using type = make_signed_impl::with_volatile<T>;
+};
+// #endregion
+
+// #region Unsigned Transformation Type Trait
+namespace make_unsigned_impl {
+/** Strip cv-qualifiers. */
+template <typename T>
+using base_type = remove_cv_t<T>;
+/** Map signed types to unsigned counterparts, pass if already unsigned. */
+// clang-format off
+template <typename T>
+using unsigned_base_type = 
+  conditional_t<is_same_v<base_type<T>, signed char>,      unsigned char,
+  conditional_t<is_same_v<base_type<T>, short>,            unsigned short,
+  conditional_t<is_same_v<base_type<T>, int>,              unsigned int,
+  conditional_t<is_same_v<base_type<T>, long>,             unsigned long,
+  conditional_t<is_same_v<base_type<T>, long long>,        unsigned long long,
+  conditional_t<is_same_v<base_type<T>, char>,             unsigned char,
+  conditional_t<is_same_v<base_type<T>, wchar_t>,          unsigned int,
+  conditional_t<is_same_v<base_type<T>, char8_t>,          unsigned char,
+  conditional_t<is_same_v<base_type<T>, char16_t>,         unsigned short,
+  conditional_t<is_same_v<base_type<T>, char32_t>,         unsigned int,
+  // Already unsigned — pass through
+  base_type<T>
+  >>>>>>>>>>;
+// clang-format on
+/** Re-apply const. */
+template <typename T>
+using with_const =
+    conditional_t<is_const_v<T>, add_const_t<unsigned_base_type<T>>, unsigned_base_type<T>>;
+/** Re-apply volatile. */
+template <typename T>
+using with_volatile = conditional_t<is_volatile_v<T>, add_volatile_t<with_const<T>>, with_const<T>>;
+}  // namespace make_unsigned_impl
+
+/** @brief make_unsigned helper. */
+template <typename T>
+struct make_unsigned_helper {
+  static_assert(is_integral_v<T> && !is_same_v<T, bool>,
+                "make_unsigned requires an integral type except bool.");
+  using type = make_unsigned_impl::with_volatile<T>;
+};
 // #endregion
 
 }  // namespace mge::traits::detail
 // #endregion
 
 // #region Public API
-namespace mge::traits {}  // namespace mge::traits
+namespace mge::traits {
+
+// #region Integral Property - Signed Query
+/**
+ * @brief A type used to check if an object is a signed type.
+ * @tparam T Type of the object.
+ * @ingroup traits
+ */
+template <typename T>
+struct MGE_API_TEMPLATE is_signed : detail::is_signed_helper<T> {};
+
+/**
+ * @brief Value alias for is_signed.
+ * @ingroup traits
+ */
+template <typename T>
+inline constexpr bool is_signed_v = is_signed<T>::value;
+// #endregion
+
+// #region Integral Property - Unsigned Query
+/**
+ * @brief A type used to check if an object is a unsigned type.
+ * @tparam T Type of the object.
+ * @ingroup traits
+ */
+template <typename T>
+struct MGE_API_TEMPLATE is_unsigned : detail::is_unsigned_helper<T> {};
+
+/**
+ * @brief Value alias for is_unsigned.
+ * @ingroup traits
+ */
+template <typename T>
+inline constexpr bool is_unsigned_v = is_unsigned<T>::value;
+// #endregion
+
+// #region Integral Property - Signed Transformation
+/**
+ * @brief A type used to convert an object into a signed type.
+ * @tparam T Type of the object.
+ * @ingroup traits
+ */
+template <typename T>
+struct MGE_API_TEMPLATE make_signed : detail::make_signed_helper<T> {};
+
+/**
+ * @brief Type alias for make_signed.
+ * @ingroup traits
+ */
+template <typename T>
+using make_signed_t = typename make_signed<T>::type;
+// #endregion
+
+// #region Integral Property - Unsigned Transformation
+/**
+ * @brief A type used to convert an object into a unsigned type.
+ * @tparam T Type of the object.
+ * @ingroup traits
+ */
+template <typename T>
+struct MGE_API_TEMPLATE make_unsigned : detail::make_unsigned_helper<T> {};
+
+/**
+ * @brief Type alias for make_unsigned.
+ * @ingroup traits
+ */
+template <typename T>
+using make_unsigned_t = typename make_unsigned<T>::type;
+// #endregion
+
+}  // namespace mge::traits
 // #endregion
